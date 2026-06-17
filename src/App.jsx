@@ -1541,7 +1541,7 @@ function ProfilePage({ go, goToRestaurant, onLogout, ordersHistory = ORDER_HISTO
               </button>
             ))}
             <button onClick={() => go("driver")} style={{ marginLeft: "auto", ...fl("row", "center", "center", 7), background: "rgba(255,107,53,.2)", border: "1px solid rgba(255,107,53,.4)", borderRadius: 10, padding: "10px 18px", cursor: "pointer", ...I, fontSize: 13, fontWeight: 600, color: C.primary }}>
-              🛵 Switch to Driver Mode
+              🛵 Switch to Employee Mode
             </button>
           </div>
         </div>
@@ -2380,7 +2380,7 @@ function DeliveryPartnerHubPage({ go }) {
               </div>
             </div>
             <button onClick={() => { go("profile"); }} style={{ background: "rgba(255,255,255,0.12)", border: "none", borderRadius: 10, padding: "8px 16px", ...I, fontSize: 13, fontWeight: 600, color: "#fff", cursor: "pointer" }}>
-              ← Switch to Student
+              ← Switch to User Mode
             </button>
           </div>
 
