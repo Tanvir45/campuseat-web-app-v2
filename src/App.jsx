@@ -38,47 +38,135 @@ const RESTAURANTS = [
   { id: 6, name: "Ayam Penyet Hub", cuisine: "Indonesian · Fusion", rating: 4.7, reviews: 204, walk: 7, price: "RM 8–14", open: true, until: "10 PM", halal: true, emoji: "🍗", bg: "#D97706", tags: ["Halal", "Indonesian", "Budget"] },
 ];
 
-const MENU = {
-  Mains: [
-    { id: 101, name: "Nasi Lemak Ayam Berempah", desc: "Fragrant coconut rice with spiced chicken, sambal, boiled egg & crispy anchovies", price: 8.90, popular: true, emoji: "🍛" },
-    { id: 102, name: "Mee Goreng Mamak", desc: "Wok-fried yellow noodles with egg, tofu, bean sprouts & fresh lime", price: 6.50, popular: false, emoji: "🍜" },
-    { id: 103, name: "Char Kuey Teow", desc: "Flat rice noodles stir-fried with prawns, egg, bean sprouts & dark soy sauce", price: 9.90, popular: true, emoji: "🍝" },
-    { id: 104, name: "Nasi Campur", desc: "White rice with 3 fresh side dishes of the day — served daily", price: 7.50, popular: false, emoji: "🍚" },
-  ],
-  Sides: [
-    { id: 105, name: "Roti Canai", desc: "Crispy layered flatbread served with dhal curry dipping sauce", price: 2.50, popular: true, emoji: "🫓" },
-    { id: 106, name: "Karipap (3 pcs)", desc: "Golden curry puffs filled with spiced potato and chicken", price: 3.00, popular: false, emoji: "🥟" },
-  ],
-  Drinks: [
-    { id: 107, name: "Teh Tarik", desc: "Classic pulled milk tea — served hot or iced", price: 2.50, popular: true, emoji: "🧋" },
-    { id: 108, name: "Milo Ais", desc: "Cold chocolate malt drink — a beloved Malaysian staple", price: 2.80, popular: false, emoji: "🥤" },
-    { id: 109, name: "Air Bandung", desc: "Sweet rose-flavoured milk drink served over ice", price: 2.20, popular: false, emoji: "🍹" },
-  ],
-  Combos: [
-    { id: 110, name: "Student Saver Set", desc: "Nasi Lemak + Teh Tarik + Karipap — best campus value meal", price: 12.90, popular: true, emoji: "🎓" },
-  ],
+const RESTAURANT_MENUS = {
+  1: {
+    Mains: [
+      { id: 101, name: "Nasi Lemak Ayam Berempah", desc: "Fragrant coconut rice with spiced chicken, sambal, boiled egg & crispy anchovies", price: 8.90, popular: true, emoji: "🍛" },
+      { id: 102, name: "Mee Goreng Mamak", desc: "Wok-fried yellow noodles with egg, tofu, bean sprouts & fresh lime", price: 6.50, popular: false, emoji: "🍜" },
+      { id: 103, name: "Char Kuey Teow", desc: "Flat rice noodles stir-fried with prawns, egg, bean sprouts & dark soy sauce", price: 9.90, popular: true, emoji: "🍝" },
+      { id: 104, name: "Nasi Campur", desc: "White rice with 3 fresh side dishes of the day — served daily", price: 7.50, popular: false, emoji: "🍚" },
+    ],
+    Sides: [
+      { id: 105, name: "Roti Canai", desc: "Crispy layered flatbread served with dhal curry dipping sauce", price: 2.50, popular: true, emoji: "🫓" },
+      { id: 106, name: "Karipap (3 pcs)", desc: "Golden curry puffs filled with spiced potato and chicken", price: 3.00, popular: false, emoji: "🥟" },
+    ],
+    Drinks: [
+      { id: 107, name: "Teh Tarik", desc: "Classic pulled milk tea — served hot or iced", price: 2.50, popular: true, emoji: "🧋" },
+      { id: 108, name: "Milo Ais", desc: "Cold chocolate malt drink — a beloved Malaysian staple", price: 2.80, popular: false, emoji: "🥤" },
+      { id: 109, name: "Air Bandung", desc: "Sweet rose-flavoured milk drink served over ice", price: 2.20, popular: false, emoji: "🍹" },
+    ],
+    Combos: [
+      { id: 110, name: "Student Saver Set", desc: "Nasi Lemak + Teh Tarik + Karipap — best campus value meal", price: 12.90, popular: true, emoji: "🎓" },
+    ],
+  },
+  2: {
+    Mains: [
+      { id: 201, name: "Roti Canai Special", desc: "Fresh crispy flatbread served with rich dhal and chicken curry", price: 3.50, popular: true, emoji: "🫓" },
+      { id: 203, name: "Murtabak Daging", desc: "Pan-fried folded bread stuffed with minced beef, eggs, and onions", price: 9.00, popular: true, emoji: "🇲🇾" },
+      { id: 204, name: "Maggi Goreng", desc: "Stir-fried instant noodles with veggies, tofu, and egg", price: 5.50, popular: false, emoji: "🍜" },
+      { id: 205, name: "Nasi Kandar", desc: "Steamed rice served with choice of curries and side dishes", price: 8.50, popular: true, emoji: "🍛" },
+    ],
+    Sides: [
+      { id: 206, name: "Samosa (3 pcs)", desc: "Deep-fried pastry filled with spiced potatoes and peas", price: 4.50, popular: false, emoji: "🥟" },
+      { id: 207, name: "Roti Tisu", desc: "Thin, crispy sweet flatbread shaped like a cone", price: 4.00, popular: false, emoji: "🗼" },
+    ],
+    Drinks: [
+      { id: 202, name: "Teh Tarik Harum", desc: "Aromatic frothy pulled black tea with sweet condensed milk", price: 2.80, popular: true, emoji: "🧋" },
+      { id: 208, name: "Limau Ais", desc: "Refreshing iced lime juice", price: 2.00, popular: false, emoji: "🍋" },
+    ],
+    Combos: [
+      { id: 209, name: "Mamak Supper Set", desc: "Maggi Goreng + Teh Tarik Harum — perfect for late night study", price: 7.80, popular: true, emoji: "🦉" },
+    ],
+  },
+  3: {
+    Mains: [
+      { id: 301, name: "Char Kuey Teow Special", desc: "Stir-fried flat rice noodles with cockles, prawns, Chinese sausage & chives", price: 10.90, popular: true, emoji: "🍝" },
+      { id: 303, name: "Nasi Lemak", desc: "Fragrant coconut rice served with sweet-spicy sambal, egg & fried chicken", price: 6.00, popular: true, emoji: "🍛" },
+      { id: 304, name: "Chicken Rice", desc: "Steamed chicken served with fragrant seasoned rice and soup", price: 7.50, popular: false, emoji: "🍚" },
+    ],
+    Sides: [
+      { id: 305, name: "Wonton Soup", desc: "Warm clear broth with savory pork/chicken wonton dumplings", price: 5.00, popular: false, emoji: "🥣" },
+      { id: 306, name: "Kaya Toast", desc: "Toasted bread with coconut jam and cold butter slices", price: 3.00, popular: true, emoji: "🍞" },
+    ],
+    Drinks: [
+      { id: 302, name: "Kopi O Ais", desc: "Classic Malaysian black coffee served iced and sweetened", price: 2.00, popular: true, emoji: "☕" },
+      { id: 307, name: "Cham Ais", desc: "Delicious iced blend of local coffee and tea", price: 2.50, popular: false, emoji: "🥛" },
+    ],
+    Combos: [
+      { id: 308, name: "Kopitiam Breakfast Set", desc: "Kaya Toast + 2 Half-Boiled Eggs + Kopi O Ais", price: 6.50, popular: true, emoji: "🍳" },
+    ],
+  },
+  4: {
+    Mains: [
+      { id: 401, name: "Classic Cheeseburger", desc: "Flame-grilled beef patty with melted cheddar, lettuce, tomato & house sauce", price: 14.90, popular: true, emoji: "🍔" },
+      { id: 403, name: "Grilled Chicken Chop", desc: "Juicy grilled chicken thigh served with black pepper sauce, fries & coleslaw", price: 16.90, popular: true, emoji: "🥩" },
+      { id: 404, name: "Fish & Chips", desc: "Crispy battered fish fillets served with golden fries and tartar sauce", price: 15.90, popular: false, emoji: "🐟" },
+    ],
+    Sides: [
+      { id: 402, name: "Chicken Wings (6 pcs)", desc: "Crispy fried chicken wings tossed in BBQ sauce", price: 12.00, popular: true, emoji: "🍗" },
+      { id: 405, name: "Onion Rings", desc: "Deep-fried breaded onion rings served with mayo", price: 6.00, popular: false, emoji: "🧅" },
+    ],
+    Drinks: [
+      { id: 406, name: "Iced Lemon Tea", desc: "Chilled brewed black tea with lemon juice and sugar", price: 3.50, popular: false, emoji: "🍹" },
+      { id: 407, name: "Vanilla Milkshake", desc: "Creamy vanilla ice cream blended with fresh milk", price: 6.50, popular: false, emoji: "🥤" },
+    ],
+    Combos: [
+      { id: 408, name: "Burger Buddy Combo", desc: "Classic Cheeseburger + Fries + Iced Lemon Tea", price: 19.90, popular: true, emoji: "🥤" },
+    ],
+  },
+  5: {
+    Mains: [
+      { id: 501, name: "Salmon Maki (8 pcs)", desc: "Fresh salmon rolled with seasoned sushi rice and seaweed nori", price: 18.90, popular: true, emoji: "🍣" },
+      { id: 504, name: "Chicken Katsu Curry", desc: "Crispy breaded chicken cutlet with Japanese curry sauce over rice", price: 15.90, popular: true, emoji: "🍛" },
+      { id: 505, name: "Tempura Udon", desc: "Thick wheat noodles in hot broth served with crispy shrimp tempura", price: 14.90, popular: false, emoji: "🍜" },
+    ],
+    Sides: [
+      { id: 502, name: "Edamame", desc: "Steamed young soybeans sprinkled with sea salt", price: 5.00, popular: false, emoji: "🌱" },
+      { id: 506, name: "Gyoza (5 pcs)", desc: "Pan-fried Japanese dumplings filled with minced chicken and cabbage", price: 9.00, popular: true, emoji: "🥟" },
+    ],
+    Drinks: [
+      { id: 503, name: "Matcha Latte", desc: "Premium Japanese green tea powder whisked with hot or iced milk", price: 8.50, popular: true, emoji: "🍵" },
+      { id: 507, name: "Ocha (Green Tea)", desc: "Traditional Japanese hot green tea, unsweetened", price: 2.00, popular: false, emoji: "🍵" },
+    ],
+    Combos: [
+      { id: 508, name: "Sushi Bento Set", desc: "Salmon Maki + Edamame + Gyoza (3 pcs) + Hot Ocha", price: 26.90, popular: true, emoji: "🍱" },
+    ],
+  },
+  6: {
+    Mains: [
+      { id: 601, name: "Ayam Penyet Special", desc: "Crispy smashed fried chicken served with fiery sambal, tofu, tempeh & cabbage", price: 10.90, popular: true, emoji: "🍗" },
+      { id: 602, name: "Nasi Ayam Bakar", desc: "Sweet-savory grilled chicken served with rice, sambal and cucumber slices", price: 11.50, popular: true, emoji: "🍛" },
+      { id: 603, name: "Gado-Gado", desc: "Indonesian salad of boiled vegetables, hard-boiled egg, tofu & tempeh in peanut sauce", price: 8.50, popular: false, emoji: "🥗" },
+    ],
+    Sides: [
+      { id: 604, name: "Tempeh & Tahu Goreng", desc: "Fried fermented soybean cakes and tofu served with sweet soy sauce", price: 4.00, popular: false, emoji: "🍢" },
+      { id: 605, name: "Bakso Soup", desc: "Savory beef meatball soup with glass noodles and scallions", price: 6.00, popular: false, emoji: "🥣" },
+    ],
+    Drinks: [
+      { id: 606, name: "Soda Gembira", desc: "Fizzy drink made of condensed milk, rose syrup, and club soda", price: 3.50, popular: true, emoji: "🍹" },
+      { id: 607, name: "Teh Botol Sosro", desc: "Famous sweet jasmine tea in a bottle, served chilled", price: 3.00, popular: false, emoji: "🧋" },
+    ],
+    Combos: [
+      { id: 608, name: "Penyet Saver Combo", desc: "Ayam Penyet Special + Teh Botol Sosro", price: 13.00, popular: true, emoji: "🎓" },
+    ],
+  }
 };
-const ALL_MENU = Object.values(MENU).flat();
 
-const SEARCH_ITEMS = [
-  { id: 101, name: "Nasi Lemak Ayam Berempah", cat: "Mains", price: 8.90, restaurant: "Warung Pak Din", walk: 4, emoji: "🍛" },
-  { id: 102, name: "Mee Goreng Mamak", cat: "Mains", price: 6.50, restaurant: "Warung Pak Din", walk: 4, emoji: "🍜" },
-  { id: 103, name: "Char Kuey Teow", cat: "Mains", price: 9.90, restaurant: "Warung Pak Din", walk: 4, emoji: "🍝" },
-  { id: 105, name: "Roti Canai", cat: "Sides", price: 2.50, restaurant: "Warung Pak Din", walk: 4, emoji: "🫓" },
-  { id: 107, name: "Teh Tarik", cat: "Drinks", price: 2.50, restaurant: "Warung Pak Din", walk: 4, emoji: "🧋" },
-  { id: 201, name: "Roti Canai Special", cat: "Mains", price: 3.50, restaurant: "Mamak Corner", walk: 6, emoji: "🫓" },
-  { id: 202, name: "Teh Tarik Harum", cat: "Drinks", price: 2.80, restaurant: "Mamak Corner", walk: 6, emoji: "🧋" },
-  { id: 203, name: "Murtabak Daging", cat: "Mains", price: 9.00, restaurant: "Mamak Corner", walk: 6, emoji: "🥙" },
-  { id: 204, name: "Maggi Goreng", cat: "Mains", price: 5.50, restaurant: "Mamak Corner", walk: 6, emoji: "🍜" },
-  { id: 301, name: "Char Kuey Teow Special", cat: "Mains", price: 10.90, restaurant: "Kafe Murni", walk: 8, emoji: "🍝" },
-  { id: 302, name: "Kopi O Ais", cat: "Drinks", price: 2.00, restaurant: "Kafe Murni", walk: 8, emoji: "☕" },
-  { id: 303, name: "Nasi Lemak", cat: "Mains", price: 6.00, restaurant: "Kafe Murni", walk: 8, emoji: "🍛" },
-  { id: 401, name: "Classic Cheeseburger", cat: "Mains", price: 14.90, restaurant: "The Grill House", walk: 11, emoji: "🍔" },
-  { id: 402, name: "Chicken Wings (6 pcs)", cat: "Sides", price: 12.00, restaurant: "The Grill House", walk: 11, emoji: "🍗" },
-  { id: 501, name: "Salmon Maki (8 pcs)", cat: "Mains", price: 18.90, restaurant: "Sushi Yume", walk: 9, emoji: "🍣" },
-  { id: 502, name: "Edamame", cat: "Sides", price: 5.00, restaurant: "Sushi Yume", walk: 9, emoji: "🌱" },
-  { id: 503, name: "Matcha Latte", cat: "Drinks", price: 8.50, restaurant: "Sushi Yume", walk: 9, emoji: "🍵" },
-];
+const ALL_MENU = RESTAURANTS.flatMap(r => {
+  const menu = RESTAURANT_MENUS[r.id] || {};
+  return Object.entries(menu).flatMap(([cat, items]) =>
+    items.map(item => ({
+      ...item,
+      cat,
+      restaurant: r.name,
+      restaurantId: r.id,
+      walk: r.walk
+    }))
+  );
+});
+
+const SEARCH_ITEMS = ALL_MENU;
+
 const POPULAR = ["Nasi Lemak", "Teh Tarik", "Roti Canai", "Mee Goreng", "Chicken Wings"];
 
 // ═══ GLOBAL STYLES ═══════════════════════════════════════════════
@@ -196,7 +284,7 @@ function PasswordStrength({ pw }) {
 }
 
 // ═══ NAVBAR ═════════════════════════════════════════════════════
-function Navbar({ page, go, loggedIn, cartCount, activeOrder, setProfileTab, profileTab }) {
+function Navbar({ page, go, goToRestaurant, loggedIn, cartCount, activeOrder, setProfileTab, profileTab }) {
   return (
     <nav style={{
       height: 68, background: C.white, borderBottom: `1px solid ${C.border}`,
@@ -267,7 +355,7 @@ function Navbar({ page, go, loggedIn, cartCount, activeOrder, setProfileTab, pro
       {/* Right actions */}
       {loggedIn ? (
         <div style={{ ...fl("row", "center", "center", 16) }}>
-          <button className="icon-btn" onClick={() => go("restaurant")} style={{ position: "relative", background: C.pA, border: "none", borderRadius: 11, width: 44, height: 44, cursor: "pointer", ...fl("row", "center", "center") }}>
+          <button className="icon-btn" onClick={() => goToRestaurant()} style={{ position: "relative", background: C.pA, border: "none", borderRadius: 11, width: 44, height: 44, cursor: "pointer", ...fl("row", "center", "center") }}>
             <ShoppingCart size={20} color={C.primary} />
             {cartCount > 0 && <div style={{ position: "absolute", top: -4, right: -4, background: C.primary, borderRadius: "50%", width: 19, height: 19, ...fl("row", "center", "center") }}>
               <span style={{ ...I, fontSize: 10, fontWeight: 700, color: "#fff" }}>{cartCount}</span>
@@ -295,7 +383,7 @@ function Navbar({ page, go, loggedIn, cartCount, activeOrder, setProfileTab, pro
 }
 
 // ═══ LANDING PAGE ════════════════════════════════════════════
-function LandingPage({ go }) {
+function LandingPage({ go, goToRestaurant }) {
   const [loc, setLoc] = useState("");
 
   return (
@@ -466,7 +554,7 @@ function LandingPage({ go }) {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
             {RESTAURANTS.slice(0, 3).map(r => (
-              <div key={r.id} className="rest-card" onClick={() => go("restaurant")}
+              <div key={r.id} className="rest-card" onClick={() => goToRestaurant(r.id)}
                 style={{ background: C.white, borderRadius: 20, overflow: "hidden", cursor: "pointer", boxShadow: sh(2) }}>
                 <div style={{ height: 160, background: r.bg, ...fl("row", "center", "center"), position: "relative" }}>
                   <span style={{ fontSize: 72 }}>{r.emoji}</span>
@@ -765,7 +853,7 @@ function RegisterPage({ go, onLogin }) {
 }
 
 // ═══ BROWSE PAGE ═════════════════════════════════════════════
-function BrowsePage({ go, cart, setCart }) {
+function BrowsePage({ go, goToRestaurant, cart, setCart }) {
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
 
@@ -846,7 +934,7 @@ function BrowsePage({ go, cart, setCart }) {
             </div>
 
             {cartCount > 0 && (
-              <button onClick={() => go("restaurant")} className="btn-primary" style={{ width: "100%", background: C.primary, color: "#fff", border: "none", borderRadius: 12, padding: "12px", ...fl("row", "center", "center", 8), cursor: "pointer", marginTop: 20 }}>
+              <button onClick={() => goToRestaurant()} className="btn-primary" style={{ width: "100%", background: C.primary, color: "#fff", border: "none", borderRadius: 12, padding: "12px", ...fl("row", "center", "center", 8), cursor: "pointer", marginTop: 20 }}>
                 <ShoppingCart size={16} color="#fff" />
                 <span style={{ ...I, fontSize: 14, fontWeight: 600 }}>View Cart ({cartCount})</span>
               </button>
@@ -875,7 +963,7 @@ function BrowsePage({ go, cart, setCart }) {
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: 20 }}>
               {shown.map(r => (
-                <div key={r.id} className="rest-card" onClick={() => go("restaurant")}
+                <div key={r.id} className="rest-card" onClick={() => goToRestaurant(r.id)}
                   style={{ background: C.white, borderRadius: 20, overflow: "hidden", cursor: "pointer", boxShadow: sh(1) }}>
                   <div style={{ height: 150, background: r.bg, ...fl("row", "center", "center"), position: "relative" }}>
                     <span style={{ fontSize: 64 }}>{r.emoji}</span>
@@ -909,9 +997,14 @@ function BrowsePage({ go, cart, setCart }) {
 }
 
 // ═══ RESTAURANT / MENU PAGE ══════════════════════════════════
-function RestaurantPage({ go, cart, setCart, onCheckout }) {
+function RestaurantPage({ restaurantId, go, cart, setCart, onCheckout }) {
+  const restaurant = RESTAURANTS.find(r => r.id === restaurantId) || RESTAURANTS[0];
+  const restaurantMenu = RESTAURANT_MENUS[restaurant.id] || {};
+  const categories = Object.keys(restaurantMenu);
+
   const [tab, setTab] = useState("Mains");
-  const items = MENU[tab] || [];
+  const activeTab = categories.includes(tab) ? tab : (categories[0] || "Mains");
+  const items = restaurantMenu[activeTab] || [];
   const qty = id => cart[id] || 0;
   const add = id => setCart(c => ({ ...c, [id]: (c[id] || 0) + 1 }));
   const rem = id => setCart(c => { const n = { ...c }; n[id] > 1 ? n[id]-- : delete n[id]; return n; });
@@ -932,7 +1025,7 @@ function RestaurantPage({ go, cart, setCart, onCheckout }) {
   return (
     <div className="pg" style={{ minHeight: "calc(100vh - 68px)", background: C.bg }}>
       {/* Restaurant banner */}
-      <div style={{ background: "#D97706", padding: "36px 0" }}>
+      <div style={{ background: restaurant.bg || "#D97706", padding: "36px 0" }}>
         <div style={{ ...MAX }}>
           <button onClick={() => go("home")} style={{ ...fl("row", "center", "flex-start", 6), background: "rgba(255,255,255,.2)", border: "none", borderRadius: 10, padding: "8px 16px", cursor: "pointer", ...I, fontSize: 13, fontWeight: 600, color: "#fff", marginBottom: 24 }}>
             <ArrowLeft size={16} color="#fff" /> Back to Browse
@@ -940,18 +1033,18 @@ function RestaurantPage({ go, cart, setCart, onCheckout }) {
           <div style={{ ...fl("row", "flex-start", "space-between") }}>
             <div style={{ ...fl("row", "flex-start", "flex-start", 20) }}>
               <div style={{ width: 80, height: 80, borderRadius: 20, background: "rgba(255,255,255,.2)", ...fl("row", "center", "center"), flexShrink: 0 }}>
-                <span style={{ fontSize: 44 }}>🍛</span>
+                <span style={{ fontSize: 44 }}>{restaurant.emoji || "🍛"}</span>
               </div>
               <div>
-                <div style={{ ...P, fontWeight: 800, fontSize: 28, color: "#fff", marginBottom: 4 }}>Warung Pak Din</div>
-                <div style={{ ...I, fontSize: 15, color: "rgba(255,255,255,.78)", marginBottom: 10 }}>Malay Home Cooking · Halal Certified</div>
+                <div style={{ ...P, fontWeight: 800, fontSize: 28, color: "#fff", marginBottom: 4 }}>{restaurant.name}</div>
+                <div style={{ ...I, fontSize: 15, color: "rgba(255,255,255,.78)", marginBottom: 10 }}>{restaurant.cuisine}{restaurant.halal ? " · Halal Certified" : ""}</div>
                 <div style={{ ...fl("row", "center", "flex-start", 16) }}>
-                  <StarRow rating="4.9" reviews="284" />
+                  <StarRow rating={restaurant.rating} reviews={restaurant.reviews} />
                   <span style={{ color: "rgba(255,255,255,.3)" }}>·</span>
-                  <span style={{ ...I, fontSize: 14, color: "rgba(255,255,255,.85)" }}>🚶 4 min walk</span>
+                  <span style={{ ...I, fontSize: 14, color: "rgba(255,255,255,.85)" }}>🚶 {restaurant.walk} min walk</span>
                   <span style={{ color: "rgba(255,255,255,.3)" }}>·</span>
-                  <span style={{ ...I, fontSize: 13, background: "rgba(255,255,255,.2)", padding: "3px 10px", borderRadius: 20, color: "rgba(255,255,255,.9)" }}>Open until 9 PM</span>
-                  <HalalBadge />
+                  <span style={{ ...I, fontSize: 13, background: "rgba(255,255,255,.2)", padding: "3px 10px", borderRadius: 20, color: "rgba(255,255,255,.9)" }}>Open until {restaurant.until}</span>
+                  {restaurant.halal && <HalalBadge />}
                 </div>
               </div>
             </div>
@@ -967,11 +1060,11 @@ function RestaurantPage({ go, cart, setCart, onCheckout }) {
       {/* Category tabs */}
       <div style={{ background: C.white, borderBottom: `1px solid ${C.border}`, position: "sticky", top: 68, zIndex: 50 }}>
         <div style={{ ...MAX, ...fl("row", "center", "flex-start") }}>
-          {Object.keys(MENU).map(t => (
-            <button key={t} className="tab-btn" onClick={() => setTab(t)} style={{ padding: "16px 24px", border: "none", background: "none", cursor: "pointer", ...I, fontSize: 14, fontWeight: tab === t ? 600 : 400, color: tab === t ? C.primary : C.textSec, borderBottom: `3px solid ${tab === t ? C.primary : "transparent"}`, transition: "all .15s" }}>
+          {categories.map(t => (
+            <button key={t} className="tab-btn" onClick={() => setTab(t)} style={{ padding: "16px 24px", border: "none", background: "none", cursor: "pointer", ...I, fontSize: 14, fontWeight: activeTab === t ? 600 : 400, color: activeTab === t ? C.primary : C.textSec, borderBottom: `3px solid ${activeTab === t ? C.primary : "transparent"}`, transition: "all .15s" }}>
               {t}
-              <span style={{ marginLeft: 6, fontSize: 12, color: tab === t ? C.primary : C.muted, background: tab === t ? C.pA : "rgba(100,116,139,.1)", borderRadius: 20, padding: "1px 7px" }}>
-                {MENU[t].length}
+              <span style={{ marginLeft: 6, fontSize: 12, color: activeTab === t ? C.primary : C.muted, background: activeTab === t ? C.pA : "rgba(100,116,139,.1)", borderRadius: 20, padding: "1px 7px" }}>
+                {restaurantMenu[t].length}
               </span>
             </button>
           ))}
@@ -982,7 +1075,7 @@ function RestaurantPage({ go, cart, setCart, onCheckout }) {
       <div style={{ ...MAX, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 360px", gap: 32, paddingTop: 32, paddingBottom: isMobile ? 100 : 48, alignItems: "flex-start" }}>
         {/* Menu items */}
         <div>
-          <div style={{ ...P, fontWeight: 700, fontSize: 18, color: C.dark, marginBottom: 20 }}>{tab}</div>
+          <div style={{ ...P, fontWeight: 700, fontSize: 18, color: C.dark, marginBottom: 20 }}>{activeTab}</div>
           {items.map(item => (
             <div key={item.id} className="menu-row" style={{ background: C.white, borderRadius: 16, marginBottom: 12, padding: "20px 22px", ...fl("row", "center", "space-between"), boxShadow: sh(1) }}>
               <div style={{ flex: 1, paddingRight: 24 }}>
@@ -1161,7 +1254,7 @@ function RestaurantPage({ go, cart, setCart, onCheckout }) {
 }
 
 // ═══ SEARCH PAGE ════════════════════════════════════════════
-function SearchPage({ go, cart, setCart }) {
+function SearchPage({ go, goToRestaurant, cart, setCart }) {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("All");
   const [recent, setRecent] = useState(["Nasi Lemak", "Teh Tarik", "Roti Canai"]);
@@ -1229,7 +1322,7 @@ function SearchPage({ go, cart, setCart }) {
           {totalQty > 0 && (
             <>
               <div style={{ borderTop: `1px solid ${C.border}`, marginTop: 16, paddingTop: 16 }}>
-                <button onClick={() => go("restaurant")} style={{ width: "100%", background: C.dark, color: "#fff", border: "none", borderRadius: 12, padding: "12px", ...fl("row", "center", "center", 8), cursor: "pointer" }}>
+                <button onClick={() => goToRestaurant()} style={{ width: "100%", background: C.dark, color: "#fff", border: "none", borderRadius: 12, padding: "12px", ...fl("row", "center", "center", 8), cursor: "pointer" }}>
                   <ShoppingCart size={16} color="#fff" />
                   <span style={{ ...I, fontSize: 13, fontWeight: 600 }}>Cart ({totalQty})</span>
                 </button>
@@ -1289,7 +1382,10 @@ function SearchPage({ go, cart, setCart }) {
                 </div>
               ) : (
                 results.map(item => (
-                  <div key={item.id} className="result-row" onClick={() => go("restaurant")}
+                  <div key={item.id} className="result-row" onClick={() => {
+                    const r = RESTAURANTS.find(res => res.name === item.restaurant);
+                    goToRestaurant(r ? r.id : null);
+                  }}
                     style={{ background: C.white, borderRadius: 16, marginBottom: 12, padding: "18px 22px", ...fl("row", "center", "space-between"), boxShadow: sh(1) }}>
                     <div style={{ ...fl("row", "center", "flex-start", 16) }}>
                       <div style={{ width: 60, height: 60, borderRadius: 14, background: C.pA, ...fl("row", "center", "center"), flexShrink: 0 }}>
@@ -1306,7 +1402,11 @@ function SearchPage({ go, cart, setCart }) {
                     </div>
                     <div style={{ ...fl("row", "center", "center", 16) }}>
                       <span style={{ ...P, fontSize: 18, fontWeight: 800, color: C.primary }}>RM {item.price.toFixed(2)}</span>
-                      <button onClick={e => { e.stopPropagation(); go("restaurant"); }} style={{ ...fl("row", "center", "center", 6), background: C.primary, color: "#fff", border: "none", borderRadius: 10, padding: "9px 18px", cursor: "pointer", ...I, fontSize: 13, fontWeight: 600 }}>
+                      <button onClick={e => {
+                        e.stopPropagation();
+                        const r = RESTAURANTS.find(res => res.name === item.restaurant);
+                        goToRestaurant(r ? r.id : null);
+                      }} style={{ ...fl("row", "center", "center", 6), background: C.primary, color: "#fff", border: "none", borderRadius: 10, padding: "9px 18px", cursor: "pointer", ...I, fontSize: 13, fontWeight: 600 }}>
                         <Plus size={14} color="#fff" /> Add
                       </button>
                     </div>
@@ -1345,7 +1445,7 @@ const PAYMENT_METHODS = [
   { id: 3, name: "Cash on Delivery", detail: "Pay when food arrives", icon: "💵", primary: false, type: "cash" },
 ];
 
-function ProfilePage({ go, onLogout, ordersHistory = ORDER_HISTORY, activeTab: propActiveTab, setActiveTab: propSetActiveTab }) {
+function ProfilePage({ go, goToRestaurant, onLogout, ordersHistory = ORDER_HISTORY, activeTab: propActiveTab, setActiveTab: propSetActiveTab }) {
   const [localActiveTab, setLocalActiveTab] = useState("overview");
   const activeTab = propActiveTab || localActiveTab;
   const setActiveTab = propSetActiveTab || setLocalActiveTab;
@@ -1585,7 +1685,10 @@ function ProfilePage({ go, onLogout, ordersHistory = ORDER_HISTORY, activeTab: p
                       <span style={{ ...I, fontSize: 12, color: statusColor[order.status], fontWeight: 600 }}>{statusLabel[order.status]}</span>
                     </div>
                     <div style={{ ...fl("row", "center", "center", 8) }}>
-                      <button onClick={() => go("restaurant")} style={{ background: C.pA, border: "none", borderRadius: 9, padding: "7px 14px", cursor: "pointer", ...I, fontSize: 12, fontWeight: 600, color: C.primary }}>Reorder</button>
+                      <button onClick={() => {
+                        const r = RESTAURANTS.find(res => res.name === order.restaurant);
+                        goToRestaurant(r ? r.id : null);
+                      }} style={{ background: C.pA, border: "none", borderRadius: 9, padding: "7px 14px", cursor: "pointer", ...I, fontSize: 12, fontWeight: 600, color: C.primary }}>Reorder</button>
                       <button style={{ background: "transparent", border: `1px solid ${C.border}`, borderRadius: 9, padding: "7px 14px", cursor: "pointer", ...I, fontSize: 12, color: C.textSec }}>Details</button>
                     </div>
                   </div>
@@ -1929,11 +2032,14 @@ function ActiveOrderTrackingPage({ go, activeOrder, setActiveOrder, ordersHistor
   const currentStep = elapsed < 4 ? 0 : elapsed < 8 ? 1 : elapsed < 12 ? 2 : elapsed < 16 ? 3 : 4;
   const eta = currentStep === 0 ? 20 : currentStep === 1 ? 14 : currentStep === 2 ? 8 : currentStep === 3 ? 2 : 0;
 
+  const firstItemRaw = activeOrder.items[0] || "food";
+  const itemName = firstItemRaw.split(" × ")[0] || "food";
+
   const steps = [
-    { title: "Order Confirmed", sub: "Warung Pak Din received your order" },
-    { title: "Being Prepared", sub: "Your Nasi Lemak is being cooked fresh" },
+    { title: "Order Confirmed", sub: `${activeOrder.restaurant} received your order` },
+    { title: "Being Prepared", sub: `Your ${itemName} is being cooked fresh` },
     { title: "Picked Up", sub: "Ali is heading your way!" },
-    { title: "Arriving Soon", sub: "2 min away · Approaching Engineering Lab" },
+    { title: "Arriving Soon", sub: `2 min away · Approaching ${activeOrder.location || "Engineering Lab"}` },
     { title: "Delivered", sub: "Enjoy your hot meal! Share your feedback" }
   ];
 
@@ -2211,7 +2317,7 @@ function DeliveryPartnerHubPage({ go }) {
 
           <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: 14, padding: 16, marginBottom: 16, ...fl("row", "center", "space-between") }}>
             <div>
-              <div style={{ ...I, fontSize: 11, color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Today's Earnings</div>
+              <div style={{ ...I, fontSize: 11, color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Total Earnings</div>
               <div style={{ ...P, fontWeight: 900, fontSize: 28, color: "#fff" }}>RM 124.50</div>
             </div>
             <div style={{ textAlign: "right" }}>
@@ -2311,11 +2417,30 @@ export default function App() {
   const [profileTab, setProfileTab] = useState("overview");
   const [showCheckout, setShowCheckout] = useState(false);
   const [processingPayment, setProcessingPayment] = useState(false);
+  const [selectedRestaurantId, setSelectedRestaurantId] = useState(1);
 
   const go = (p) => { setPage(p); window.scrollTo(0, 0); };
   const onLogin = () => { setLoggedIn(true); go("home"); };
   const onLogout = () => { setLoggedIn(false); setCart({}); setActiveOrder(null); go("landing"); };
   const cartCount = Object.values(cart).reduce((a, b) => a + b, 0);
+
+  const getCartRestaurantId = () => {
+    const firstId = Object.keys(cart)[0];
+    if (firstId) {
+      const item = ALL_MENU.find(i => i.id === +firstId);
+      if (item) {
+        const res = RESTAURANTS.find(r => r.name === item.restaurant);
+        if (res) return res.id;
+      }
+    }
+    return null;
+  };
+
+  const goToRestaurant = (id) => {
+    const targetId = id || getCartRestaurantId() || selectedRestaurantId;
+    setSelectedRestaurantId(targetId);
+    go("restaurant");
+  };
 
   const handleConfirmCheckout = (location, paymentMethod) => {
     setShowCheckout(false);
@@ -2328,9 +2453,15 @@ export default function App() {
         const it = ALL_MENU.find(i => i.id === +id); return s + (it ? it.price * q : 0);
       }, 0);
 
+      const firstCartItemId = Object.keys(cart)[0];
+      const firstCartItem = firstCartItemId ? ALL_MENU.find(i => i.id === +firstCartItemId) : null;
+      const orderRestaurant = firstCartItem ? RESTAURANTS.find(r => r.id === firstCartItem.restaurantId) : null;
+      const orderRestaurantName = orderRestaurant ? orderRestaurant.name : "Warung Pak Din";
+      const orderRestaurantEmoji = orderRestaurant ? orderRestaurant.emoji : "🍛";
+
       const newOrder = {
         id: `#CE-${Math.floor(1000 + Math.random() * 9000)}`,
-        restaurant: "Warung Pak Din",
+        restaurant: orderRestaurantName,
         items: Object.entries(cart).map(([id, q]) => {
           const item = ALL_MENU.find(i => i.id === +id);
           return `${item ? item.name : "Unknown Item"} × ${q}`;
@@ -2338,7 +2469,7 @@ export default function App() {
         total: totalPrice,
         date: new Date().toLocaleString("en-MY", { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
         status: "processing",
-        emoji: "🍛",
+        emoji: orderRestaurantEmoji,
         location: location,
         paymentMethod: paymentMethod,
         createdAt: Date.now()
@@ -2354,14 +2485,14 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", fontFamily: "Inter, sans-serif" }}>
       <GlobalStyles />
-      <Navbar page={page} go={go} loggedIn={loggedIn} cartCount={cartCount} activeOrder={activeOrder} setProfileTab={setProfileTab} profileTab={profileTab} />
-      {page === "landing" && <LandingPage go={go} />}
+      <Navbar page={page} go={go} goToRestaurant={goToRestaurant} loggedIn={loggedIn} cartCount={cartCount} activeOrder={activeOrder} setProfileTab={setProfileTab} profileTab={profileTab} />
+      {page === "landing" && <LandingPage go={go} goToRestaurant={goToRestaurant} />}
       {page === "login" && <LoginPage go={go} onLogin={onLogin} />}
       {page === "register" && <RegisterPage go={go} onLogin={onLogin} />}
-      {page === "home" && <BrowsePage go={go} cart={cart} setCart={setCart} />}
-      {page === "restaurant" && <RestaurantPage go={go} cart={cart} setCart={setCart} onCheckout={() => setShowCheckout(true)} />}
-      {page === "search" && <SearchPage go={go} cart={cart} setCart={setCart} />}
-      {page === "profile" && <ProfilePage go={go} onLogout={onLogout} ordersHistory={ordersHistory} activeTab={profileTab} setActiveTab={setProfileTab} />}
+      {page === "home" && <BrowsePage go={go} goToRestaurant={goToRestaurant} cart={cart} setCart={setCart} />}
+      {page === "restaurant" && <RestaurantPage restaurantId={selectedRestaurantId} go={go} cart={cart} setCart={setCart} onCheckout={() => setShowCheckout(true)} />}
+      {page === "search" && <SearchPage go={go} goToRestaurant={goToRestaurant} cart={cart} setCart={setCart} />}
+      {page === "profile" && <ProfilePage go={go} goToRestaurant={goToRestaurant} onLogout={onLogout} ordersHistory={ordersHistory} activeTab={profileTab} setActiveTab={setProfileTab} />}
       {page === "tracking" && <ActiveOrderTrackingPage go={go} activeOrder={activeOrder} setActiveOrder={setActiveOrder} ordersHistory={ordersHistory} setOrdersHistory={setOrdersHistory} />}
       {page === "driver" && <DeliveryPartnerHubPage go={go} />}
 
