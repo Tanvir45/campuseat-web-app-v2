@@ -2387,11 +2387,11 @@ function DeliveryPartnerHubPage({ go }) {
           <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: 14, padding: 16, marginBottom: 16, ...fl("row", "center", "space-between") }}>
             <div>
               <div style={{ ...I, fontSize: 11, color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Total Earnings</div>
-              <div style={{ ...P, fontWeight: 900, fontSize: 28, color: "#fff" }}>RM 124.50</div>
+              <div style={{ ...P, fontWeight: 900, fontSize: 28, color: "#fff" }}>RM 27.50</div>
             </div>
             <div style={{ textAlign: "right" }}>
               <div style={{ ...I, fontSize: 11, color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Completed Trips</div>
-              <div style={{ ...P, fontWeight: 800, fontSize: 24, color: "#fff" }}>14</div>
+              <div style={{ ...P, fontWeight: 800, fontSize: 24, color: "#fff" }}>15</div>
             </div>
           </div>
 
