@@ -1445,7 +1445,7 @@ const PAYMENT_METHODS = [
   { id: 3, name: "Cash on Delivery", detail: "Pay when food arrives", icon: "💵", primary: false, type: "cash" },
 ];
 
-function ProfilePage({ go, goToRestaurant, onLogout, ordersHistory = ORDER_HISTORY, activeTab: propActiveTab, setActiveTab: propSetActiveTab }) {
+function ProfilePage({ go, goToRestaurant, onLogout, ordersHistory = ORDER_HISTORY, activeTab: propActiveTab, setActiveTab: propSetActiveTab, locations: propLocations, setLocations: propSetLocations }) {
   const [localActiveTab, setLocalActiveTab] = useState("overview");
   const activeTab = propActiveTab || localActiveTab;
   const setActiveTab = propSetActiveTab || setLocalActiveTab;
@@ -1453,7 +1453,9 @@ function ProfilePage({ go, goToRestaurant, onLogout, ordersHistory = ORDER_HISTO
   const [showAddLoc, setShowAddLoc] = useState(false);
   const [newLocName, setNewLocName] = useState("");
   const [newLocDetail, setNewLocDetail] = useState("");
-  const [locations, setLocations] = useState(SAVED_LOCATIONS);
+  const [localLocations, setLocalLocations] = useState(SAVED_LOCATIONS);
+  const locations = propLocations || localLocations;
+  const setLocations = propSetLocations || setLocalLocations;
   const [payments, setPayments] = useState(PAYMENT_METHODS);
   const [showAddPay, setShowAddPay] = useState(false);
   const [newPayName, setNewPayName] = useState("");
@@ -1930,8 +1932,11 @@ function ProfilePage({ go, goToRestaurant, onLogout, ordersHistory = ORDER_HISTO
 
 // ═══ CHECKOUT MODAL ══════════════════════════════════════════
 function CheckoutModal({ cart, totalPrice, locations, payments, onClose, onConfirm }) {
-  const [selectedLoc, setSelectedLoc] = useState(locations.find(l => l.primary) || locations[0]);
+  const [selectedLoc, setSelectedLoc] = useState(() => {
+    return locations.find(l => l.primary) || locations[0] || { id: 0, name: "No location selected", detail: "Please add a location", icon: "📌" };
+  });
   const [selectedPay, setSelectedPay] = useState(payments.find(p => p.primary) || payments[0]);
+  const [showLocSelector, setShowLocSelector] = useState(false);
 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(0,0,0,0.52)", ...fl("row", "center", "center"), padding: 20 }}>
@@ -1944,15 +1949,79 @@ function CheckoutModal({ cart, totalPrice, locations, payments, onClose, onConfi
         {/* Location selection */}
         <div style={{ marginBottom: 20 }}>
           <label style={{ ...I, fontSize: 12, fontWeight: 600, color: C.muted, letterSpacing: .5, display: "block", marginBottom: 8 }}>DELIVERY DESTINATION</label>
-          <div style={{ background: C.bg, borderRadius: 12, padding: "14px 16px", border: `1px solid ${C.border}`, ...fl("row", "center", "space-between") }}>
+          <div
+            style={{
+              background: C.bg,
+              borderRadius: 12,
+              padding: "14px 16px",
+              border: `1px solid ${C.border}`,
+              ...fl("row", "center", "space-between"),
+              cursor: "pointer",
+              transition: "all 0.2s"
+            }}
+            onClick={() => setShowLocSelector(!showLocSelector)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = C.primary;
+              e.currentTarget.style.background = C.white;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = C.border;
+              e.currentTarget.style.background = C.bg;
+            }}
+          >
             <div style={{ ...fl("row", "center", "flex-start", 12) }}>
-              <span style={{ fontSize: 22 }}>{selectedLoc.icon}</span>
-              <div>
+              <span style={{ fontSize: 22 }}>{selectedLoc.icon || "📌"}</span>
+              <div style={{ textAlign: "left" }}>
                 <div style={{ ...I, fontSize: 14, fontWeight: 600, color: C.dark }}>{selectedLoc.name}</div>
                 <div style={{ ...I, fontSize: 12, color: C.textSec }}>{selectedLoc.detail}</div>
               </div>
             </div>
+            <div style={{ ...fl("row", "center", "center", 4) }}>
+              <span style={{ ...I, fontSize: 13, fontWeight: 700, color: C.primary }}>Change</span>
+              <ChevronDown size={16} color={C.primary} style={{ transform: showLocSelector ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
+            </div>
           </div>
+
+          {/* Collapsible Location Selector */}
+          {showLocSelector && (
+            <div style={{
+              background: C.white,
+              border: `1px solid ${C.border}`,
+              borderRadius: 12,
+              padding: "12px 14px",
+              marginTop: 8,
+              boxShadow: sh(1),
+              maxHeight: 220,
+              overflowY: "auto"
+            }}>
+              {locations.map(loc => (
+                <div key={loc.id} onClick={() => { setSelectedLoc(loc); setShowLocSelector(false); }}
+                  style={{
+                    padding: "10px 12px",
+                    borderRadius: 10,
+                    cursor: "pointer",
+                    ...fl("row", "center", "space-between"),
+                    background: selectedLoc.id === loc.id ? C.pA : "transparent",
+                    transition: "all 0.2s",
+                    marginBottom: 4
+                  }}
+                  onMouseEnter={(e) => { if (selectedLoc.id !== loc.id) e.currentTarget.style.background = C.bg; }}
+                  onMouseLeave={(e) => { if (selectedLoc.id !== loc.id) e.currentTarget.style.background = "transparent"; }}
+                >
+                  <div style={{ ...fl("row", "center", "flex-start", 10), textAlign: "left" }}>
+                    <span style={{ fontSize: 18 }}>{loc.icon}</span>
+                    <div>
+                      <div style={{ ...I, fontSize: 13, fontWeight: 600, color: C.dark }}>{loc.name}</div>
+                      <div style={{ ...I, fontSize: 11, color: C.textSec }}>{loc.detail}</div>
+                    </div>
+                  </div>
+                  {selectedLoc.id === loc.id && (
+                    <span style={{ color: C.primary, fontSize: 14 }}>✓</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Payment options */}
@@ -2418,6 +2487,7 @@ export default function App() {
   const [showCheckout, setShowCheckout] = useState(false);
   const [processingPayment, setProcessingPayment] = useState(false);
   const [selectedRestaurantId, setSelectedRestaurantId] = useState(1);
+  const [locations, setLocations] = useState(SAVED_LOCATIONS);
 
   const go = (p) => { setPage(p); window.scrollTo(0, 0); };
   const onLogin = () => { setLoggedIn(true); go("home"); };
@@ -2492,7 +2562,7 @@ export default function App() {
       {page === "home" && <BrowsePage go={go} goToRestaurant={goToRestaurant} cart={cart} setCart={setCart} />}
       {page === "restaurant" && <RestaurantPage restaurantId={selectedRestaurantId} go={go} cart={cart} setCart={setCart} onCheckout={() => setShowCheckout(true)} />}
       {page === "search" && <SearchPage go={go} goToRestaurant={goToRestaurant} cart={cart} setCart={setCart} />}
-      {page === "profile" && <ProfilePage go={go} goToRestaurant={goToRestaurant} onLogout={onLogout} ordersHistory={ordersHistory} activeTab={profileTab} setActiveTab={setProfileTab} />}
+      {page === "profile" && <ProfilePage go={go} goToRestaurant={goToRestaurant} onLogout={onLogout} ordersHistory={ordersHistory} activeTab={profileTab} setActiveTab={setProfileTab} locations={locations} setLocations={setLocations} />}
       {page === "tracking" && <ActiveOrderTrackingPage go={go} activeOrder={activeOrder} setActiveOrder={setActiveOrder} ordersHistory={ordersHistory} setOrdersHistory={setOrdersHistory} />}
       {page === "driver" && <DeliveryPartnerHubPage go={go} />}
 
@@ -2503,7 +2573,7 @@ export default function App() {
           totalPrice={Object.entries(cart).reduce((s, [id, q]) => {
             const it = ALL_MENU.find(i => i.id === +id); return s + (it ? it.price * q : 0);
           }, 0)}
-          locations={SAVED_LOCATIONS}
+          locations={locations}
           payments={PAYMENT_METHODS}
           onClose={() => setShowCheckout(false)}
           onConfirm={handleConfirmCheckout}
