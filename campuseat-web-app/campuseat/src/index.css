@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --primary:#FF6B35;
+  --primary-d:#E0531F;
+  --primary-a:rgba(255,107,53,0.12);
+  --primary-a20:rgba(255,107,53,0.22);
+  --dark:#1A2A3A;
+  --bg:#F7F9FC;
+  --white:#FFFFFF;
+  --border:#E0E6ED;
+  --text-sec:#64748B;
+  --muted:#A0AEC0;
+  --green:#22C55E;
+  --green-a:rgba(34,197,94,0.12);
+  --red:#EF4444;
+  --red-a:rgba(239,68,68,0.10);
+  --amber:#D97706;
+  --blue:#0891B2;
+  --purple:#7C3AED;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+html,body,#root{height:100%;}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  -webkit-font-smoothing:antialiased;
+}
+
+.font-display{font-family:'Poppins',sans-serif;}
+
+input::placeholder{color:var(--muted);}
+button{font-family:inherit;}
+
+.hs{scrollbar-width:none;-ms-overflow-style:none;}
+.hs::-webkit-scrollbar{display:none;}
+
+.pg{animation:pgIn .25s ease both;}
+@keyframes pgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulseRing{
+  0%{transform:scale(0.9);opacity:.7}
+  70%{transform:scale(1.4);opacity:0}
+  100%{transform:scale(1.4);opacity:0}
+}
+
+a{color:inherit;text-decoration:none;}
+
+:focus-visible{
+  outline:2px solid var(--primary);
+  outline-offset:2px;
+}
