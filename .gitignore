@@ -64,7 +64,3 @@ coverage/
 # Temporary files
 tmp/
 temp/
-
-# Markdown files
-*.md
-!campuseat-design-spec.md
